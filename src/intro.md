@@ -15,7 +15,7 @@ information about restic.
 
 You can ask questions in the
 [Discussions](https://github.com/rustic-rs/rustic/discussions) or have a look at
-the [FAQ](./FAQ.md).
+the [FAQ](./FATQ.md).
 
 | Contact       | Where?                                                                                                          |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
