@@ -1,0 +1,20 @@
+[book]
+authors = ["the rustic authors"]
+description = "rustic - fast, encrypted, and deduplicated backups"
+language = "en"
+multilingual = false
+src = "src"
+title = "rustic dev documentation"
+
+[output.html]
+curly-quotes = true
+default-theme = "ayu"
+site-url = "/dev-docs/"
+git-repository-url = "https://github.com/rustic-rs/dev-docs"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/rustic-rs/dev-docs/edit/main/{path}"
+cname = "rustic.cli.rs"
+
+[output.html.fold]
+enable = true
+level = 0
