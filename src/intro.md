@@ -1,4 +1,4 @@
-![rustic getting started](https://media.githubusercontent.com/media/rustic-rs/docs/main/assets/readme_header.png)
+![rustic getting started](https://media.githubusercontent.com/media/rustic-rs/dev-docs/main/assets/readme_header_dev.png)
 
 # Introduction
 
