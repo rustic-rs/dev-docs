@@ -3,7 +3,6 @@
 - [Introduction](./intro.md)
 - [Contributing to rustic](./contributing-to-rustic.md)
 - [Technical FAQ](./FATQ.md)
-  - [Comparison `rustic` and `restic`](./comparison-restic.md)
 - [Installation](./installation.md)
   - [Nightly Builds](./nightly_builds.md)
 - [Technical Design](./design/intro.md)
