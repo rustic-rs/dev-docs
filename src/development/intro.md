@@ -20,28 +20,29 @@ Currently it supports the following functionalities:
 | `cargo xtask install-deps` | Install dependencies for the development process.                 |
 | `cargo xtask timings`      | Show longest times taken in release build using cargo-bloat.      |
 
-## Justfile
+## Maskfile
 
-We utilize `just` to provide additional functionality for the development
+We utilize `mask` to provide additional functionality for the development
 process.
 
 ### Installation
 
-Install `just` with:
+Install `mask` with:
 
 ```bash
-cargo install just
+cargo install mask
 ```
 
+<!--
 or by using [`scoop`](https://scoop.sh/):
 
 ```bash
-scoop install just
-```
+scoop install mask
+``` -->
 
-### Usage
+<!-- ### Usage -->
 
-Currently it supports the following functionalities:
+<!-- Currently it supports the following functionalities:
 
 | Command             | Description                                                                      |
 | ------------------- | -------------------------------------------------------------------------------- |
@@ -64,3 +65,5 @@ Currently it supports the following functionalities:
 | `just tpa`          | Runs a test to check if the public api of rustic_core has been changed.          |
 | `just coverage`     | Generate code coverage report.                                                   |
 | `just inv-ft *ARGS` | List the inverse dependencies as in which feature enables a given crate `*ARGS`. |
+
+-->
