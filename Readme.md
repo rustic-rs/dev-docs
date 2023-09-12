@@ -2,7 +2,7 @@
 <img src="https://media.githubusercontent.com/media/rustic-rs/dev-docs/main/assets/readme_header_dev.png" height="400" />
 </p>
 <p align="center">
-<b>fast, encrypted, and deduplicated backups</b>
+<b>developer Documentation</b>
 </p>
 
 <p align="center">
@@ -10,8 +10,6 @@
 <a href="https://raw.githubusercontent.com/rustic-rs/rustic/main/"><img src="https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg" /></a>
 <a href="https://crates.io/crates/rustic-rs"><img src="https://img.shields.io/crates/d/rustic-rs.svg" /></a>
 <p>
-
-# Documentation
 
 An open source developers documentation book for
 [rustic](https://github.com/rustic-rs/rustic) that you can read
