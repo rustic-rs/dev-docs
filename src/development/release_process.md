@@ -105,7 +105,7 @@ to check if the CLI API has changed and the version number needs to be bumped.
 
    If `git-cliff` was used to generate the changelog, run:
 
-   `git-cliff --tag v{version} --output CHANGELOG.md`
+   `git-cliff --include-path crates\rustic_core\* -o .\crates\rustic_core\CHANGELOG.md -t {version}`
 
    otherwise, add the changes manually.
 
