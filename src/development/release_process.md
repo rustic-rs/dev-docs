@@ -44,7 +44,7 @@ to check if the CLI API has changed and the version number needs to be bumped.
 
 1. CLI API Regenerate
 
-   Run:
+   To generate the CLI API fixtures for the current version run:
 
    `mask completions regenerate`
 
@@ -107,26 +107,28 @@ to check if the CLI API has changed and the version number needs to be bumped.
 
    Update the test fixtures if needed. For example see the following.
 
-1. Public API Regenerate
-
-   Run:
-
-   `mask public-api regenerate`
-
-   on Windows and one *Nix system to regenerate the public API fixtures for both
-   platforms.
-
 1. Examples
 
    Check if the examples need to be updated.
 
 ... TODO! ...
 
+1. Public API Regenerate
+
+   To generate the public API fixtures for the current version run:
+
+   `mask public-api regenerate`
+
+   on Windows and one *Nix system to regenerate the public API fixtures for both
+   platforms.
+
 1. Publishing to crates.io
 
    Run:
 
    `cargo publish --manifest-path crates/rustic_core/Cargo.toml`
+
+## After release
 
 <!-- TODO: Include `cargo smart-release` into the release process.
 
