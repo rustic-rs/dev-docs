@@ -1,6 +1,17 @@
 # Release Process
 
-Work in progress ...
+## Common
+
+1. Name your branch
+
+   Use the following naming scheme for your branch:
+
+   `release/{package-name}-vX.Y.Z` or `release/{package-name}-X.Y.Z`
+
+   so the release branch for `rustic-rs` version `0.6.0` would be named:
+
+   `release/rustic-rs-v0.1.0` or `release/rustic-rs-0.1.0` or
+   `release/rustic-0.1.0`
 
 ## `rustic-rs`
 
