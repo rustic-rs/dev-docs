@@ -28,7 +28,7 @@ jobs:
       MDBOOK_VERSION: 0.4.21
     steps:
       - uses: actions/checkout@v4
-      - uses: taiki-e/install-action@c2648687d6fe1a5a70a4b65c84715cafab1f3451
+      - uses: taiki-e/install-action@2b8d4e021f3c5d9b9d4726c038ac367d3ed730b6
         with:
           tool: mdbook,mdbook-last-changed
       - name: Setup Pages
@@ -37,7 +37,7 @@ jobs:
       - name: Build with mdBook
         run: mdbook build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./book
 
@@ -51,4 +51,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
