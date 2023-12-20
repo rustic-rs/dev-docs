@@ -53,7 +53,7 @@ We utilize multistage docker build with following stages
 - `builder` - consists of 2 container layers
   - first - contains build dependencies (it wii be rebuild only if Cargo.lock or Cargo.toml has changes)
   - second - main build of our application
-- `runtime` - debian slim image for running our app (we don't use alpine cause [this](https://andygrove.io/2020/05/why-musl-extremely-slow/))
+- `runtime` - debian slim image for running our app (we don't use alpine cause [this](https://web.archive.org/web/20231214004214/https://andygrove.io/2020/05/why-musl-extremely-slow/))
 
 ### `cargo-chef`
 
