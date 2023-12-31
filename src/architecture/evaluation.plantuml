@@ -18,6 +18,7 @@ component "rustic_core" {
 
     [Repository]
     [ProgressBar]
+    [Filtering]
     [Commands]
 
     CoreAPI --> Commands
