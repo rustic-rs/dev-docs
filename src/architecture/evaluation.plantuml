@@ -1,0 +1,119 @@
+@startuml evaluation
+
+component "rustic" {
+
+    component "rustic_rs" {
+        [CliCommands] --> [CliConfig]
+    }
+
+    [RUSTIC_APP] -> [rustic_rs]
+}
+
+component "rustic_core" {
+    port CoreAPI
+    portOut BackendPort
+    portOut CryptoPort
+    portOut ConfigPort
+    portOut AlgorithmPort
+
+    [Repository]
+    [ProgressBar]
+    [Commands]
+
+    CoreAPI --> Commands
+    CoreAPI --> Repository
+    CoreAPI --> ProgressBar
+
+    Repository --> BackendPort
+    Repository --> CryptoPort
+    Repository --> ConfigPort
+    Repository --> AlgorithmPort
+}
+
+component "rustic_algorithm" {
+    portIn AlgorithmAdapter
+    [Archiver]
+    [Blob]
+    [Chunker]
+    [Index]
+    [Id]
+    [Repofile]
+
+    AlgorithmAdapter --> Archiver
+    AlgorithmAdapter --> Blob
+    AlgorithmAdapter --> Chunker
+    AlgorithmAdapter --> Index
+    AlgorithmAdapter --> Id
+    AlgorithmAdapter --> Repofile
+}
+
+component "rustic_crypto" {
+    portIn CryptoAdapter
+    [CDC]
+    [Crypto]
+
+    CryptoAdapter --> CDC
+    CryptoAdapter --> Crypto
+}
+
+component "rustic_backend" {
+    portIn BackendAdapter
+    portOut BackendFilesystemPort
+    portOut ObjectStoragePort
+    portOut RestPort
+
+    [local]
+    [opendal]
+    [rclone]
+    [rest]
+    [s3]
+
+    BackendAdapter --> local
+    BackendAdapter --> opendal
+    BackendAdapter --> rclone
+    BackendAdapter --> rest
+    BackendAdapter --> s3
+
+    local --> BackendFilesystemPort
+    opendal --> ObjectStoragePort
+    opendal --> RestPort
+    s3 --> ObjectStoragePort
+    rclone --> RestPort
+    rest --> RestPort
+}
+
+component "rustic_config" {
+    portIn ConfigAdapter
+    portOut ConfigFilesystemPort
+    [Config]
+
+    ConfigAdapter --> Config
+    Config --> ConfigFilesystemPort
+}
+
+note bottom of [rustic_config]
+    - Config file parsing and validation
+    - Config file generation
+    - Config file locations
+    - Config file editing
+end note
+
+[CliCommands] --> CoreAPI
+BackendAdapter --> BackendPort
+CryptoAdapter --> CryptoPort
+ConfigAdapter --> ConfigPort
+AlgorithmAdapter --> AlgorithmPort
+
+component "rustic_server" {
+    [Controller]
+}
+
+rustic_server --> CoreAPI
+
+component "rustic_scheduler" {
+    [Scheduler]
+}
+
+rustic_scheduler --> CoreAPI
+
+@enduml
