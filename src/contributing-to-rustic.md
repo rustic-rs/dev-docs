@@ -81,6 +81,14 @@ guidelines:
   dprint fmt
   ```
 
+- Use `Clippy`; a collection of lints to catch common mistakes. You can install
+  it with `rustup component add clippy`, and run it with the following command
+  in the repository root:
+
+  ```bash
+  cargo clippy
+  ```
+
 - Write clear and concise code with meaningful, self-describing variable and
   function names. This tells the reader **what** the code does.
 
