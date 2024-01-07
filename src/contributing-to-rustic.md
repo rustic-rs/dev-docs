@@ -88,6 +88,7 @@ guidelines:
 
   ```bash
   cargo clippy --all -- -D warnings
+
 - Write clear and concise code with meaningful, self-describing variable and
   function names. This tells the reader **what** the code does.
 
