@@ -83,7 +83,8 @@ guidelines:
 
 - Use `Clippy` — a collection of lints to catch common mistakes.
   
-  If you haven't installed your Rust toolchain with `rustup`, please [install](https://doc.rust-lang.org/nightly/clippy/installation.html) it
+  If you haven't installed your Rust toolchain with `rustup`, please
+  [install](https://doc.rust-lang.org/nightly/clippy/installation.html) it
   first. Then run Clippy with the following command in the crate root:
 
   ```bash
