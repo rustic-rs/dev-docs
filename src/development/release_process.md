@@ -1,145 +1,106 @@
 # Release Process
 
-## Common
-
-1. Name your branch
-
-   Use the following naming scheme for your branch:
-
-   `release/{package-name}-vX.Y.Z` or `release/{package-name}-X.Y.Z`
-
-   so the release branch for `rustic-rs` version `0.6.0` would be named:
-
-   `release/rustic-rs-v0.1.0` or `release/rustic-rs-0.1.0` or
-   `release/rustic-0.1.0`
-
-## `rustic-rs`
-
-1. CLI API
-
-Run:
-
-`mask completions test`
-
-to check if the CLI API has changed and the version number needs to be bumped.
-
-1. Version number
-
-   Depending of the outcome of the CLI API check, bump the corresponding version
-   number in `Cargo.toml`.
-
-   Change the version number in the Readme as well.
-
-1. Use the `release`-Branch
-
-   Push the changes to a `release/vX.Y.Z` branch in the repository.
-
-1. Changelog
-
-   Update the `CHANGELOG.md` file.
-
-   If `git-cliff` was used to generate the changelog, run:
-
-   `git-cliff -l --exclude-path crates\rustic_core\* -o CHANGELOG.md -t {version}`
-
-   otherwise, add the changes manually.
-
-1. Documentation
-
-   Check if the documentation needs to be updated somewhere. Take notes if there
-   are any changes needed and update this document.
-
-1. Test
-
-   Update the test fixtures if needed. For example see the following.
-
-1. CLI API Regenerate
-
-   To generate the CLI API fixtures for the current version run:
-
-   `mask completions regenerate`
-
-   on Windows and one *Nix system to regenerate the CLI API fixtures for both
-   platforms.
-
-1. Examples
-
-   Check if the examples need to be updated.
-
-... TODO! ...
-
-1. Publishing to crates.io
-
-   Run:
-
-   `cargo publish --manifest-path Cargo.toml`
-
-## `rustic_core`
-
-1. Public API
-
-   Run:
-
-   `mask public-api test`
-
-   to check if the public API has changed and the version number needs to be
-   bumped.
-
-   Helpful advices are also given by the
-   [Cargo reference](https://doc.rust-lang.org/cargo/reference/semver.html).
-
-1. Version number
-
-   Depending of the outcome of the Public API check, bump the corresponding
-   version number in `rustic_core/Cargo.toml`.
-
-   Change the version number in the Readme as well.
-
-1. Use the `release`-Branch
-
-   Push the changes to a `release/vX.Y.Z` branch in the repository
-
-1. Changelog
-
-   Update the `CHANGELOG.md` file.
-
-   If `git-cliff` was used to generate the changelog, run:
-
-   `git-cliff -l --include-path crates\rustic_core\* -o .\crates\rustic_core\CHANGELOG.md -t {version}`
-
-   otherwise, add the changes manually.
-
-1. Documentation
-
-   Check if the documentation needs to be updated somewhere. Take notes if there
-   are any changes needed and update this document.
-
-1. Tests
-
-   Update the test fixtures if needed. For example see the following.
-
-1. Examples
-
-   Check if the examples need to be updated.
-
-... TODO! ...
-
-1. Public API Regenerate
-
-   To generate the public API fixtures for the current version run:
-
-   `mask public-api regenerate`
-
-   on Windows and one *Nix system to regenerate the public API fixtures for both
-   platforms.
-
-1. Publishing to crates.io
-
-   Run:
-
-   `cargo publish --manifest-path crates/rustic_core/Cargo.toml`
-
-## After release
+## CLI Releases: `rustic-rs` / `rustic_server` / `rustic_scheduler`
+
+1. **Open a Release PR**: Open a
+   [release PR workflow](https://github.com/rustic-rs/rustic/actions/workflows/release-pr.yml)
+   by opening the drop down on the top right `Run workflow`. For
+   `Crate to release` select `rustic-rs` for `Version to release` select the
+   version you want to release with the format `X.Y.Z` (strip the 'v'). This
+   will create a PR with the changes needed to release the version.
+
+1. **Auto-generate completions test fixtures**: If the CLI API tests fail, it
+   means this is definitely a breaking change and needs a major/minor version
+   bump. To update the fixtures, go to the top of the just created PR and copy
+   the branch name, it should be in the form `release/rustic-rs/X.Y.Z`. Then go
+   to the
+   [update completions workflow](https://github.com/rustic-rs/rustic/actions/workflows/update-completions.yml).
+   On the top right under `Run workflow`, run the workflow from the `main`
+   branch and paste the just copied branch name to `PR branch to push to` and
+   click `Run workflow`. This will auto-generate the completions test fixtures
+   for the new version, to make the tests run through.
+
+1. **Generate changelog**: To update the changelog, you need `git-cliff`
+   installed. Run: `git-cliff -u -p .\CHANGELOG.md -t {new_version}`. This will
+   update the changelog with the changes since the last tag.
+
+1. **Documentation**: Check if the documentation needs to be updated somewhere.
+   Take notes if there are any changes needed in the release process and update
+   this document.
+
+1. **Review and Merge the PR**: Review the PR and make sure all checks have
+   passed. Then merge the PR.
+
+1. **Tag the release**: After the PR has been merged, tag the commit on the
+   `main` branch with the version number and push the tag to GitHub. This should
+   make the release workflow run and crate a release for the tag and attach
+   built artifacts to it. It will also copy the changelog to the release notes.
+
+1. **Publishing to crates.io**: After pushing the tag to the `main` branch run
+   `cargo publish` in the repository root.
+
+1. **Publishing to GitHub**: After the release workflow has finished, go to the
+   [releases page](https://github.com/rustic-rs/rustic/releases) and find your
+   release draft with the attached artifacts. Edit the release draft to your
+   liking and publish it.
+
+1. **Write an announcement**: Write an announcement for the release and post it
+   on the
+   [rustic-rs/rustic discussions](https://github.com/rustic-rs/rustic/discussions/categories/announcements).
+
+## Library Releases: `rustic_core` / `rustic_backend`
+
+1. **Open a Release PR**: Open a
+   [release PR workflow](https://github.com/rustic-rs/rustic_core/actions/workflows/release-pr.yml)
+   by opening the drop down on the top right `Run workflow`. For
+   `Crate to release` select `rustic-rs` for `Version to release` select the
+   version you want to release with the format `X.Y.Z` (strip the 'v'). This
+   will create a PR with the changes needed to release the version.
+
+1. **Auto-generate Public API test fixtures**: If the API tests fail, it means
+   this is definitely a breaking change and needs a major/minor version bump. To
+   update the fixtures, go to the top of the just created PR and copy the branch
+   name, it should be in the form `release/rustic_core/X.Y.Z`. Then go to the
+   [update completions workflow](https://github.com/rustic-rs/rustic_core/actions/workflows/update-public-api.yml).
+   On the top right under `Run workflow`, run the workflow from the `main`
+   branch and paste the just copied branch name to `PR branch to push to` and
+   click `Run workflow`. This will auto-generate the Public API test fixtures
+   for the new version, to make the tests run through.
+
+1. **Examples**: Check if the examples need to be updated. Run documentation
+   tests to check if the examples are still working. You can run them by running
+   `cargo check --examples` in the `rustic_core` directory.
+
+1. **Documentation**: Check if the documentation needs to be updated somewhere.
+   Take notes if there are any changes needed in the release process and update
+   this document. Run documentation tests to check if the documentation is still
+   working. You can run them by running `cargo test --doc` in the `rustic_core`
+   directory. You can also view the documentation with:
+   `cargo doc --no-deps --all-features --document-private-items --open -p rustic_core`
+
+1. **Generate changelog**: To update the changelog, you need `git-cliff`
+   installed. Run: `git-cliff -u -p .\CHANGELOG.md -t {new_version}`. This will
+   update the changelog with the changes since the last tag.
+
+1. **Review and Merge the PR**: Review the PR and make sure all checks have
+   passed. Then merge the PR.
+
+1. **Tag the release**: After the PR has been merged, tag the commit on the
+   `main` branch with the version number and push the tag to GitHub. This should
+   make the release workflow run and crate a release for the tag. It will also
+   copy the changelog to the release notes.
+
+1. **Publishing to crates.io**: After pushing the tag to the `main` branch run
+   `cargo publish` in the repository root.
+
+1. **Review the Draft Release**: After the release workflow has finished, go to
+   the [releases page](https://github.com/rustic-rs/rustic_core/releases) and
+   find your release draft. Edit the release draft to your liking and publish
+   it.
+
+1. **Write an announcement**: Write an announcement for the release and post it
+   on the
+   [rustic-rs/rustic discussions](https://github.com/rustic-rs/rustic/discussions/categories/announcements).
 
 <!-- TODO: Include `cargo smart-release` into the release process.
 

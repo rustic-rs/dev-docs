@@ -118,3 +118,149 @@ component "rustic_scheduler" {
 rustic_scheduler --> CoreAPI
 
 @enduml
+
+
+@startmindmap cli_commands
+* CLI
+' Basic commands
+** backup
+** check
+** init (links to config->generate internally)
+** config
+***_ show
+***_ set-value
+***_ get-value
+***_ generate
+** restore
+** self-update
+** help
+' Advanced commands
+** completions
+** snapshots
+*** new (links to backup internally)
+*** copy
+*** forget
+*** diff
+*** contents (ls)
+*** dump
+*** merge
+*** repair
+*** tag
+** repository
+*** raw-data (cat)
+*** list
+*** info
+*** new (init)
+*** prune
+*** keys
+****_ add
+****_ list
+****_ remove
+****_ show
+@endmindmap
+
+
+@startmindmap cli_commands_bkp
+* CLI
+' Basic commands
+** backup
+** check
+** config
+***_ show
+***_ set-value
+***_ get-value
+***_ generate
+** restore
+** self-update
+** help
+' Advanced commands
+** completions
+** snapshots
+*** new (links to backup internally)
+*** copy
+*** forget
+*** diff
+*** contents (ls)
+*** dump
+*** merge
+*** tag
+** init (links internally to config->generate)
+** repository
+*** new (links to init internally)
+*** raw-data (cat)
+*** list
+*** info
+*** keys
+****_ add
+****_ list
+****_ remove
+****_ show
+** maintenance
+***_ prune
+***_ repair
+****_ index
+****_ snapshots
+@endmindmap
+
+@startmindmap cli_commands_categories
+
+* CLI
+' Top level commands
+** backup (links to snapshots->new internally)
+** restore (links to snapshots->restore internally)
+** help
+
+' Configuration
+** init (links internally to profiles->new + repository->new)
+** profiles
+***_ new
+***_ list
+***_ show
+***_ edit-value
+***_ get-value
+
+' Advanced commands
+** completions
+
+' Management
+
+' Snapshots
+** snapshots
+*** new
+*** contents (ls)
+*** copy
+*** diff
+*** restore
+****_ std-out
+*** merge
+*** forget
+*** tag
+
+' Repository
+** repository
+*** new
+*** info
+*** config
+****_ show
+****_ edit
+*** raw (cat + list)
+****_ show
+****_ tree
+*** keys
+****_ new
+****_ list
+****_ remove
+****_ show
+
+' Maintenance
+** maintenance
+***_ check
+***_ repair
+****_ index
+****_ snapshots
+' Cleanup
+***_ prune
+
+' Optional
+** self-update
+@endmindmap
