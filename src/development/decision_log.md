@@ -4,9 +4,6 @@ This document contains a log of decisions made during the development within the
 
 ## 2024-09-16: Naming Conventions for Types
 
-singular = exactly only one value
-plural = array, contains one value or more
-
 We will use the following naming conventions for the following types:
 
 - Singular: `Type`, exactly one value, e.g. `path: Path`
