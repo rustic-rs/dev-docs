@@ -27,6 +27,7 @@
   - [Requirements](./design/analysis/requirements.md)
 - [Development](./development/intro.md)
   - [Glossary](./development/glossary.md)
+  - [Decision Log](./development/decision_log.md)
   - [Release process](./development/release_process.md)
   - [Testing](./development/testing.md)
 - [Talks](./talks.md)
